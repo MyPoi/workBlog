@@ -1,0 +1,43 @@
+#server
+server:
+  port: 8888
+spring:
+  application:
+    name: yomo_blog
+  mvc:
+    servlet:
+      path: /api
+  datasource:
+    url: jdbc:mysql://172.17.0.2:3306/blog?useUnicode=true&characterEncoding=UTF-8&serverTimeZone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-request-size: 20MB
+      max-file-size: 5MB
+
+  redis:
+    host: 172.17.0.3
+    port: 6379
+    password: 123456
+    lettuce:
+      pool:
+        max-idle: 10
+        max-active: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+  jackson:
+    default-property-inclusion: non_null
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      table-prefix: ms_
+  mapper-locations: classpath:com/yomo/blog/dao/mapper/*.xml
+  
+  
+

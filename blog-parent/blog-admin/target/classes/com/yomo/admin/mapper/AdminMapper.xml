@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--configuration核心配置文件-->
+<mapper namespace="com.yomo.admin.mapper.AdminMapper">
+
+    <select id="findPermissionByAdminId" resultType="com.yomo.admin.pojo.Permission">
+        SELECT * FROM ms_permission WHERE id IN(SELECT ms_role_permission.permission_id FROM ms_role_permission WHERE ms_role_permission.role_id = (SELECT ms_admin_role.role_id FROM ms_admin,ms_admin_role WHERE ms_admin.id = ms_admin_role.admin_id AND ms_admin.id = 2))
+    </select>
+</mapper>
